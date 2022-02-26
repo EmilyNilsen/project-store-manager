@@ -22,7 +22,17 @@ const findById = async (id) => {
   return product;
 };
 
+const createdNewProductService = async ({ name, quantity }) => {
+  const getProducts = await getAll();
+  if (getProducts.some((obj) => obj.name === name)) {
+    return ({ code: 409, message: 'Product already exists' });
+  }
+  const newProduct = await ProductModel.creatadNewProduct({ name, quantity });
+  return newProduct;
+};
+
 module.exports = {
   getAll,
   findById,
+  createdNewProductService,
 };

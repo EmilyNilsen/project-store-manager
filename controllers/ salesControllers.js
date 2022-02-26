@@ -1,9 +1,13 @@
 const SaleServices = require('../services/salesServices');
 
-const listSales = async (_req, res, _next) => {
-  const sales = await SaleServices.getAllSalesServices();
-  
-  res.status(200).json(sales);
+const listSales = async (_req, res, next) => {
+  try {
+    const sales = await SaleServices.getAllSalesServices();
+    
+    res.status(200).json(sales);
+  } catch (err) {
+    next(err);
+  }
 };
 
 const listSaleById = async (req, res, _next) => {
