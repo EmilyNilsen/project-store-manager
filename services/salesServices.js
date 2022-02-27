@@ -13,12 +13,12 @@ const newSaleServiceId = (salesData) => ({
   quantity: salesData.quantity,
 });
 
-const getAllSalesServices = async () => {
-  const sales = await Sales.getAllSalesModel();
+const getAllSales = async () => {
+  const sales = await Sales.getAllSales();
   return sales.map(newSalesSErvice);
 };
 
-const findByIdService = async (id) => {
+const getSaleById = async (id) => {
   const sale = await Sales.getByIdSales(id);
 
   if (!sale) return null;
@@ -27,6 +27,6 @@ const findByIdService = async (id) => {
 };
 
 module.exports = {
-  getAllSalesServices,
-  findByIdService,
+  getAllSales,
+  getSaleById,
 };

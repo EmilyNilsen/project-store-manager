@@ -1,9 +1,8 @@
 const connection = require('./connection');
 
 const getAll = async () => {
-  const [products] = await connection.execute(
-    'SELECT * FROM StoreManager.products ORDER BY id ASC;',
-  );
+  const query = 'SELECT * FROM StoreManager.products ORDER BY id ASC;';
+  const [products] = await connection.execute(query);
   return products;
 };
 
@@ -14,22 +13,36 @@ const getById = async (id) => {
   return product[0];
 };
 
-const creatadNewProduct = async ({ name, quantity }) => {
-  const [product] = await connection.execute(
-    `INSERT INTO 
-    products (name, quantity)
-  VALUES
-    (?, ?);`,
-    [name, quantity],
-  );
+const createNewProduct = async ({ name, quantity }) => {
+  const query = 'INSERT INTO products (name, quantity) VALUES (?, ?);';
+  const [dataBaseResponse] = await connection.execute(query, [name, quantity]);
 
-  const getProductById = await getById(product.insertId); 
+  const createdProduct = {
+    id: dataBaseResponse.insertId,
+    name,
+    quantity,
+  };
 
-  return getProductById;
+  return createdProduct;
+};
+
+const updateProduct = async ({ id, name, quantity }) => {
+const query = 'UPDATE StoreManager.products SET name=?, quantity=? WHERE id=?;';
+await connection.execute(query, [id, name, quantity]);
+
+const intId = parseInt(id, 10);
+const updatedProduct = {
+  id: intId,
+  name,
+  quantity,
+};
+
+return updatedProduct;
 };
 
 module.exports = {
   getAll,
   getById,
-  creatadNewProduct,
+  createNewProduct,
+  updateProduct,
 };

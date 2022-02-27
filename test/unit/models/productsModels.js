@@ -3,24 +3,6 @@ const { expect } = require('chai');
 const productModel = require('../../../models/productsModels');
 const connection = require('../../../models/connection');
 
-// describe('Cria endpoints para listar os produtos', () => {
-//   describe('Listar todos os produtos', () => {
-//     it('o resultado é um array', async () => {
-//       const products = await productModel.getAll();
-//       expect(products).to.be.an('array');
-//       expect(products).not.to.be.empty;
-//       products.forEach(p => expect(p).to.be.an('object'));
-//     })
-//     it('cada propriedade no array tem id, name e quantity', async () => {
-//       const products = await productModel.getAll();
-
-//       products.forEach(prod => {
-//         expect(prod).to.include.all.keys('id', 'name', 'quantity');
-//       })
-//     })
-//   });
-// });
-
 describe('Lista todos os produtos do BD', () => {
   describe('Quando não existe produtos no BD', () => {
     before(() => {
@@ -67,6 +49,39 @@ describe('Lista todos os produtos do BD', () => {
       
       expect(products).not.to.be.empty;
       products.forEach(prod => expect(prod).to.include.all.keys('id', 'name', 'quantity'));
+    });
+  });
+
+  describe('Insere um produto no BD' , () => {
+    describe('Quando é inserido com sucesso', () => {
+    before(() => {
+      const objectFromDataBase = [
+        {
+        name: "Exempo product",
+        quantity: 15
+        }
+      ];
+
+      sinon.stub(connection, 'execute').resolves(objectFromDataBase);
+    });
+
+    after(() => {
+      connection.execute.restore();
+    });
+
+      it('retorna um objeto', async () => {
+        const productToBeCreated = [{
+          name: "Exempo product",
+          quantity: 15
+        }];
+        const product =  await productModel.createNewProduct(productToBeCreated);
+
+        expect(product).to.be.a('object');
+      });
+      it('o produto novo possui "id"', async () => {
+        const product = await productModel.createNewProduct([{ name: 'Exempo product', quantity: 15 }])
+        expect(product).to.have.a.property('id')
+      });
     });
   });
 });

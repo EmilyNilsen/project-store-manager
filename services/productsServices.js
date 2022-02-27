@@ -1,14 +1,5 @@
 const ProductModel = require('../models/productsModels');
 
-// const getNewProdutoWithId = (productData) => {
-//   const { id, name, quantity } = productData;
-//   return {
-//     id,
-//     name,
-//     quantity,
-//   };
-// };
-
 const getAll = async () => {
   const products = await ProductModel.getAll();
   return products;
@@ -22,17 +13,24 @@ const findById = async (id) => {
   return product;
 };
 
-const createdNewProductService = async ({ name, quantity }) => {
+const createNewProduct = async ({ name, quantity }) => {
   const getProducts = await getAll();
-  if (getProducts.some((obj) => obj.name === name)) {
-    return ({ code: 409, message: 'Product already exists' });
-  }
-  const newProduct = await ProductModel.creatadNewProduct({ name, quantity });
+  if (getProducts.some((obj) => obj.name === name)) return null;
+  const newProduct = await ProductModel.createNewProduct({ name, quantity });
   return newProduct;
+};
+
+const updateProduct = async ({ id, name, quantity }) => {
+  const products = await getAll();
+  const intId = parseInt(id, 10);
+  if (!products.some((obj) => obj.id === intId)) return null;
+  const updatedProduct = await ProductModel.updateProduct({ id, name, quantity });
+  return updatedProduct;
 };
 
 module.exports = {
   getAll,
   findById,
-  createdNewProductService,
+  createNewProduct,
+  updateProduct,
 };

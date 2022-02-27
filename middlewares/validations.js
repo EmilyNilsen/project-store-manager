@@ -1,4 +1,4 @@
-const validName = (req, res, next) => {
+const validateName = (req, res, next) => {
   try {
   const { name } = req.body;
   if (!name) return res.status(400).json({ message: '"name" is required' });
@@ -12,22 +12,17 @@ const validName = (req, res, next) => {
   }
 };
 
-const validQuantity = (req, res, next) => {
-  try {
-    const { quantity } = req.body;
-    if (!quantity && typeof quantity !== 'number') {
-      return res.status(400).json({ message: '"quantity" is required' });
-    }
-    if (quantity.length < 1) {
-      return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
-    }
-    next();
-  } catch (e) {
-    next(e);
+const validateQuantity = (req, res, next) => {
+  const { quantity } = req.body;
+  if (!quantity && typeof quantity !== 'number') {
+    return res.status(400).json({ message: '"quantity" is required' });
   }
+  if (quantity < 1) {
+    return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
+  } next();
 };
 
-const validProductIdSales = (req, res, next) => {
+const validateProductIdSales = (req, res, next) => {
   try {
     const { ProductId } = req.body.some(({ productId }) => productId);
     if (!ProductId) return res.status(400).json({ message: '"productId" is required' });
@@ -36,11 +31,11 @@ const validProductIdSales = (req, res, next) => {
   }
 };
 
-const validQuantitySales = (req, res, next) => {
+const validateQuantitySales = (req, res, next) => {
   try {
     const { quantitySales } = req.body.some(({ quantity }) => quantity);
     if (!quantitySales) return res.status(400).json({ message: '"quantity" is required' });
-    if (quantitySales.length <= 0) {
+    if (quantitySales < 1) {
       return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
     }
   } catch (e) {
@@ -49,8 +44,8 @@ const validQuantitySales = (req, res, next) => {
 };
 
 module.exports = {
-  validName,
-  validQuantity,
-  validProductIdSales,
-  validQuantitySales,
+  validateName,
+  validateQuantity,
+  validateProductIdSales,
+  validateQuantitySales,
 };
