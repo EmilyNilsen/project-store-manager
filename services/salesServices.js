@@ -34,8 +34,15 @@ const createNewSale = async (sales) => {
   return ({ id: saleId, itemsSold: sales });
 };
 
+const updateSale = async (id, sale) => {
+  sale.forEach(async (product) => {
+    await Sales.update(id, product.productId, product.quantity);
+  });
+};
+
 module.exports = {
   getAllSales,
   getSaleById,
   createNewSale,
+  updateSale,
 };

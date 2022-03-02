@@ -24,8 +24,16 @@ const sale = await SaleServices.createNewSale(sales);
 res.status(201).json(sale);
 };
 
+const updateSale = async (req, res, _next) => {
+  const { id } = req.params;
+  const sale = req.body;
+  await SaleServices.updateSale(id, sale);
+  res.status(200).json({ saleId: parseInt(id, 10), itemUpdated: sale });
+};
+
 module.exports = {
   getAllSales,
   getSaleById,
   createSale,
+  updateSale,
 };

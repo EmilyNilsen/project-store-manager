@@ -31,8 +31,8 @@ salesRouter.get('/:id', salesControllers.getSaleById);
 salesRouter.post('/',
   validations.validateSales, salesControllers.createSale);
 
-// salesRouter.put('/',
-//   validations.validateSales);
+salesRouter.put('/:id',
+  validations.validateSales, salesControllers.updateSale);
 
 module.exports = {
   salesRouter,
