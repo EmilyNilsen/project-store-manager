@@ -25,12 +25,12 @@ describe("04-registerProduct", () => {
     await importer.import("./StoreManager.sql");
 
     importer.disconnect();
-  });
+  }, 100000);
 
   afterAll(async () => {
     await connection.execute("DROP DATABASE StoreManager");
     await connection.end();
-  });
+  }, 100000);
 
   describe("4 - Crie um endpoint para o cadastro de produtos", () => {
     it("Será validado que não é possível criar um produto com o mesmo nome de outro já existente", async () => {

@@ -19,6 +19,8 @@ productsRouter.post('/', validateName, validateQuantity, productsController.crea
 
 productsRouter.put('/:id', validateName, validateQuantity, productsController.updateProduct);
 
+productsRouter.delete('/:id', productsController.deleteProduct);
+
 salesRouter.get('/', salesControllers.getAllSales);
 
 salesRouter.get('/:id', salesControllers.getSaleById);
