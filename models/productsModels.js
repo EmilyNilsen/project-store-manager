@@ -40,7 +40,7 @@ const updatedProduct = {
 return updatedProduct;
 };
 
-const deleteProduct = async ({ id }) => {
+const deleteProduct = async (id) => {
   const query = 'DELETE FROM StoreManager.products WHERE id=?;';
   await connection.execute(query, [id]);
 };

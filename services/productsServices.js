@@ -31,7 +31,7 @@ const updateProduct = async ({ id, name, quantity }) => {
 const deleteProduct = async ({ id }) => {
   const product = await findById(id);
   if (!product) return null;
-  const response = await ProductModel.deleteProduct({ id });
+  const response = await ProductModel.deleteProduct(id);
   return response;
 };
 
