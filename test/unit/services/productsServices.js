@@ -4,8 +4,8 @@ const { expect } = require('chai');
 const ProductServices = require('../../../services/productsServices');
 const ProductModel = require('../../../models/productsModels');
 
-describe('Lista todos os Produtos do BD pela service', () => {
-  describe('Quando não existem produtos cadastrados', () => {
+describe('3 - Teste a camada Service do endpoint products', () => {
+  describe('3.1 - Quando não existem produtos cadastrados', () => {
     before(() => {
       sinon.stub(ProductModel,'getAll').resolves([]);
     });
@@ -22,7 +22,7 @@ describe('Lista todos os Produtos do BD pela service', () => {
     });
   });
 
-  describe('Quando existem produtos cadastrado', () => {
+  describe('3.2 - Quando existem produtos cadastrado', () => {
     before(() => {
       const product = {
         id: 1,

@@ -4,10 +4,10 @@ const { expect } = require('chai');
 const salesControllers = require('../../../controllers/ salesControllers');
 const salesService = require('../../../services/salesServices');
 
-describe('Ao chamar a controller listSales', () => {
+describe('1 - Testa a camada Controller do endpoint sales', () => {
   let request = {}, response = {}, next = {};
 
-  describe('Quandndo o serviço retorna um array vazio', () => {
+  describe('1.1 - Quandndo o serviço retorna um array vazio', () => {
     before(() => {
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
@@ -31,7 +31,7 @@ describe('Ao chamar a controller listSales', () => {
     });
   });
 
-  describe('Quando ocorre um erro no serviço', () => {
+  describe('1.2 - Quando ocorre um erro no serviço', () => {
     const err = Error('erro no serviço');
     before(() => {
       next = sinon.stub();

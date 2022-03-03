@@ -4,10 +4,10 @@ const { expect } = require('chai');
 const productController = require('../../../controllers/productsControllers');
 const ProductServices = require ('../../../services/productsServices');
 
-describe('Ao chamar o controller listProducts', () =>{
+describe('1 - Testa a camada controller do endpoint products', () =>{
   let request = {}, response = {}, next = {};
   
-  describe('Quando o serviço retorna um array de produtos', () => {
+  describe('1.1 - Quando o serviço retorna um array de produtos', () => {
     before(() => {
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
@@ -18,7 +18,7 @@ describe('Ao chamar o controller listProducts', () =>{
       ProductServices.getAll.restore();
     });
 
-    it('responde a requisição com status 200', async () => {
+    it('Responde a requisição com status 200', async () => {
       await productController.getAllProducts(request, response, next);
 
       expect(response.status.calledWith(200)).to.be.equal(true);
@@ -31,7 +31,7 @@ describe('Ao chamar o controller listProducts', () =>{
     });
   });
 
-  describe('Quando ocorre um erro no serviço', () => {
+  describe('1.2 - Quando ocorre um erro no serviço', () => {
     const err = Error('erro no serviço');
     before(() => {
       next = sinon.stub();
@@ -42,7 +42,7 @@ describe('Ao chamar o controller listProducts', () =>{
       ProductServices.getAll.restore();
     });
 
-    it ('o erro é passado para o próximo handler de erro na lista de handlers', async () =>{
+    it ('O erro é passado para o próximo handler de erro na lista de handlers', async () =>{
       await productController.getAllProducts(request, response, next);
       expect(next.calledWith(sinon.match(err))).to.be.equal(true);
     });

@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const productModel = require('../../../models/productsModels');
 const connection = require('../../../models/connection');
 
-describe('Lista todos os produtos do BD', () => {
+describe('2 - Teste a camada model do endpoint product', () => {
   describe('Quando não existe produtos no BD', () => {
     before(() => {
       const products = [[], []];
@@ -22,7 +22,7 @@ describe('Lista todos os produtos do BD', () => {
     });
   });
 
-  describe('Quando existe produtos no BD', () => {
+  describe('2.1 - Quando existe produtos no BD', () => {
     before(() => {
       const product = {
         id: 1,
@@ -52,7 +52,7 @@ describe('Lista todos os produtos do BD', () => {
     });
   });
 
-  describe('Insere um produto no BD' , () => {
+  describe('2.2 - Insere um produto no BD' , () => {
     describe('Quando é inserido com sucesso', () => {
     before(() => {
       const objectFromDataBase = [
