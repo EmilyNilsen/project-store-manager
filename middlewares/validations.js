@@ -22,37 +22,31 @@ const validateQuantity = (req, res, next) => {
   } next();
 };
 
-const validateProductIdOfSaleItem = (req, res) => {
-    req.body.forEach(({ productId }) => {
-      if (!productId) {
-        return res.status(400).json({ message: '"productId" is required' });
-      }
-    });
+const validateProductIdOfSaleItem = (req, res, next) => {
+  const havePId = req.body.some(({ productId }) => productId);
+  if (!havePId) {
+    return res.status(400).json({ message: '"productId" is required' });
+  } next();
   };
 
-    const validateQuantityOfSaleItem = (req, res) => {
-      req.body.forEach(({ quantity }) => {
-        if (!quantity && typeof quantity !== 'number') {
-          return res.status(400).json({ message: '"quantity" is required' });
-        }
-        if (quantity < 1) {
-          return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
-        }
-    });
+  const validateQuantityOfSaleItem = (req, res, next) => {
+    const haveQuantity = req.body.some(({ quantity }) => quantity);
+    if (!haveQuantity) {
+      return res.status(400).json({ message: '"quantity" is required' });
+    } next();
   };
-
-  const validateSales = (req, res, next) => {
-    try {
-      validateProductIdOfSaleItem(req, res);
-      validateQuantityOfSaleItem(req, res);
-      next();
-    } catch (e) {
-      next(e);
-    }
+  
+  const validateQuantitySales = (req, res, next) => {
+    const higherThanZero = req.body.some(({ quantity }) => quantity > 0);
+    if (!higherThanZero) {
+      return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
+    } next();
   };
 
 module.exports = {
   validateName,
   validateQuantity,
-  validateSales,
+  validateQuantityOfSaleItem,
+  validateQuantitySales,
+  validateProductIdOfSaleItem,
 };

@@ -29,10 +29,16 @@ salesRouter.get('/', salesControllers.getAllSales);
 salesRouter.get('/:id', salesControllers.getSaleById);
 
 salesRouter.post('/',
-  validations.validateSales, salesControllers.createSale);
+validations.validateProductIdOfSaleItem,
+validations.validateQuantityOfSaleItem,
+validations.validateQuantitySales,
+  salesControllers.createSale);
 
 salesRouter.put('/:id',
-  validations.validateSales, salesControllers.updateSale);
+validations.validateProductIdOfSaleItem,
+validations.validateQuantityOfSaleItem,
+validations.validateQuantitySales,
+  salesControllers.updateSale);
 
 module.exports = {
   salesRouter,

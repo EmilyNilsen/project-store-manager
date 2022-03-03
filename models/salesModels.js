@@ -21,7 +21,7 @@ const getByIdSales = async (id) => {
 };
 const createSale = async () => {
 const [dbResponse] = await connection.execute(
-  'INSERT INTO sales () VALUES ();',
+  'INSERT INTO StoreManager.sales () VALUES ();',
   );
   return dbResponse.insertId;
 };

@@ -5,7 +5,7 @@ const productController = require('../../../controllers/productsControllers');
 const ProductServices = require ('../../../services/productsServices');
 
 describe('Ao chamar o controller listProducts', () =>{
-  let request = {}, response = {}, next = () => {};
+  let request = {}, response = {}, next = {};
   
   describe('Quando o serviço retorna um array de produtos', () => {
     before(() => {
