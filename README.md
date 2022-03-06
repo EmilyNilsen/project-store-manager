@@ -2,7 +2,7 @@
 #  Project Store Manager ✍
 ## Descrição
 
-Aqui vamos desenvolver uma API de um CRUD (Create, Read, Update e Delete) utilizando a arquitetura MSC. Foi desenvolvido um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar e atualizar produtos e vendas e um gostinho de testes unitários.
+Aqui vamos desenvolver uma API de um CRUD (Create, Read, Update e Delete) utilizando a arquitetura MSC. Foi desenvolvido um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar, atualizar produtos e vendas e mais de 40% de cobertura de testes unitários.
 
 ##  Técnologias usadas
 
