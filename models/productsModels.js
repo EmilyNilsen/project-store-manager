@@ -1,21 +1,19 @@
 const connection = require('./connection');
+const ProductQueries = require('../Queries/productsQueries');
 
 const getAll = async () => {
-  const query = 'SELECT * FROM StoreManager.products ORDER BY id ASC;';
-  const [products] = await connection.execute(query);
+  const [products] = await connection.execute(ProductQueries.getAll);
   return products;
 };
 
 const getById = async (id) => {
-  const query = 'SELECT * FROM StoreManager.products WHERE id=?;';
-  const [product] = await connection.execute(query, [id]);
+  const [product] = await connection.execute(ProductQueries.getById, [id]);
   if (product.length === 0) return null;
   return product[0];
 };
 
 const createNewProduct = async ({ name, quantity }) => {
-  const query = 'INSERT INTO StoreManager.products (name, quantity) VALUES (?, ?);';
-  const [dataBaseResponse] = await connection.execute(query, [name, quantity]);
+  const [dataBaseResponse] = await connection.execute(ProductQueries.create, [name, quantity]);
 
   const createdProduct = {
     id: dataBaseResponse.insertId,
@@ -27,8 +25,7 @@ const createNewProduct = async ({ name, quantity }) => {
 };
 
 const updateProduct = async ({ id, name, quantity }) => {
-const query = 'UPDATE StoreManager.products SET name=?, quantity=? WHERE id=?;';
-await connection.execute(query, [id, name, quantity]);
+await connection.execute(ProductQueries.update, [id, name, quantity]);
 
 const intId = parseInt(id, 10);
 const updatedProduct = {
@@ -41,8 +38,7 @@ return updatedProduct;
 };
 
 const deleteProduct = async (id) => {
-  const query = 'DELETE FROM StoreManager.products WHERE id=?;';
-  await connection.execute(query, [id]);
+  await connection.execute(ProductQueries.deleteProduct, [id]);
 };
 
 module.exports = {

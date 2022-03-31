@@ -27,7 +27,7 @@ const getSaleById = async (id) => {
 };
 
 const createNewSale = async (sales) => {
-  const saleId = await Sales.createSale();
+  const saleId = await Sales.createSaleRecordId();
   await sales.forEach((sale) => {
     Sales.createNewSale(saleId, sale.productId, sale.quantity);
   });
