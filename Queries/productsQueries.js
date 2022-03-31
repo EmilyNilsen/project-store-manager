@@ -1,12 +1,12 @@
-const getAll = 'SELECT * FROM StoreManager.products ORDER BY id ASC;';
+const getAll = 'SELECT * FROM heroku_09f15076813b26b.products ORDER BY id ASC;';
 
-const getById = 'SELECT * FROM StoreManager.products WHERE id=?;';
+const getById = 'SELECT * FROM heroku_09f15076813b26b.products WHERE id=?;';
 
-const create = 'INSERT INTO StoreManager.products (name, quantity) VALUES (?, ?);';
+const create = 'INSERT INTO heroku_09f15076813b26b.products (name, quantity) VALUES (?, ?);';
 
-const update = 'UPDATE StoreManager.products SET name=?, quantity=? WHERE id=?;';
+const update = 'UPDATE heroku_09f15076813b26b.products SET name=?, quantity=? WHERE id=?;';
 
-const deleteProduct = 'DELETE FROM StoreManager.products WHERE id=?;';
+const deleteProduct = 'DELETE FROM heroku_09f15076813b26b.products WHERE id=?;';
 
 module.exports = {
   getAll,
