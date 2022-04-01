@@ -2,11 +2,13 @@ const bodyparser = require('body-parser');
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
+const cors = require('cors');
 const { productsRouter, salesRouter } = require('./controllers/routes');
 require('dotenv').config();
 
 const app = express();
 app.use(bodyparser.json());
+app.use(cors());
 
 const swaggerDocument = YAML.load('./swagger.yaml');
 
