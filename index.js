@@ -12,7 +12,7 @@ app.use(cors());
 
 const swaggerDocument = YAML.load('./swagger.yaml');
 
-app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use('/products', productsRouter);
 

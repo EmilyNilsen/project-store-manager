@@ -16,7 +16,9 @@ tags:
 - name: "Vendas"
   description: "Onde você encontra tudo sobre suas vendas"
 
-
+schemes:
+- "https"
+- "http"
 paths:
   
   /product:
@@ -213,6 +215,9 @@ definitions:
   ModeloDeRespostaDeProduto:
     type: "object"
     properties:
+      id:
+        type: "integer"
+        format: "int64"
       name:
         type: "string"
         example: "Martelo de Thor"
@@ -264,7 +269,7 @@ definitions:
       productId:
         type: "integer"
         format: "int64"
-     
+      
       quantity:
         type: "integer"
         format: "int64"

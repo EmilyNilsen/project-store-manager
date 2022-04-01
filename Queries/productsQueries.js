@@ -1,12 +1,14 @@
-const getAll = 'SELECT * FROM products ORDER BY id ASC;';
+const { DB } = require('../db.config');
 
-const getById = 'SELECT * FROM products WHERE id=?;';
+const getAll = `SELECT * FROM ${DB}.products ORDER BY id ASC;`;
 
-const create = 'INSERT INTO products (name, quantity) VALUES (?, ?);';
+const getById = `SELECT * FROM ${DB}.products WHERE id=?;`;
 
-const update = 'UPDATE products SET name=?, quantity=? WHERE id=?;';
+const create = `INSERT INTO ${DB}.products (name, quantity) VALUES (?, ?);`;
 
-const deleteProduct = 'DELETE FROM products WHERE id=?;';
+const update = `UPDATE ${DB}..products SET name=?, quantity=? WHERE id=?;`;
+
+const deleteProduct = `DELETE FROM ${DB}..products WHERE id=?;`;
 
 module.exports = {
   getAll,
