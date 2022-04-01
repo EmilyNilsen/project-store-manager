@@ -144,7 +144,7 @@ paths:
       
       responses:
         "200":
-          description: "Retorna todos as vendas realizadas"
+          description: "Retorna uma lista contendo todos as vendas disponiveis. Modelo de objeto Venda abaixo:"
           schema:
             $ref: "#/definitions/ModeloDeRespostaDeListagemDeVendas"
           
