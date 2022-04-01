@@ -49,38 +49,14 @@ paths:
         description: "Objeto do produto que será adicionado na loja"
         required: true
         schema:
-          $ref: "#/definitions/ModeloDeRespostaDeProduto"
+          $ref: "#/definitions/ModeloDeCriacaoDeProduto"
           
       responses:
         "201":
           description: "Retorna o produto criado"
         "409":
           description: "Caso o produto já exista retorna a mensagem: Product already exists"
-    
-    put:
-      tags:
-      - "Produtos"
-      summary: "Atualiza um produto existente"
-      description: ""
-      operationId: "updateProduct"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Objeto do produto que será atualizado"
-        required: true
-        schema:
-          $ref: "#/definitions/ModeloDeAtualizacaoDeProduto"
-          
-      responses:
-        "200":
-          description: "Retorna o produto atualizado"
-        "404":
-          description: "Caso o produto não exista retorna a mensagem: Product not found"
- 
+
   /products/{productId}:
     get:
       tags:
@@ -105,6 +81,35 @@ paths:
         "404":
           description: "Caso o produto não exista retorna a mensagem: Product not found"
           
+    put:
+      tags:
+      - "Produtos"
+      summary: "Atualiza um produto pelo ID"
+      description: ""
+      operationId: "updateProduct"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "productId"
+        in: "path"
+        description: "ID do produto desejado"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Objeto do produto que será atualizado"
+        required: true
+        schema:
+            $ref: "#/definitions/ModeloDeAtualizacaoDeProduto"
+      responses:
+        "200":
+          description: "Retorna o produto atualizado"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaDeProduto"
+        "404":
+          description: "Caso o produto não exista retorna a mensagem: Product not found"
+        
     delete:
       tags:
       - "Produtos"
@@ -211,6 +216,16 @@ paths:
   
 definitions:
 
+  ModeloDeCriacaoDeProduto:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "Martelo de Thor"
+      quantity:
+        type: "integer"
+        format: "int64"
+
   ModeloDeRespostaDeProduto:
     type: "object"
     properties:
@@ -230,9 +245,6 @@ definitions:
     - "name"
     - "quantity"
     properties:
-      id:
-        type: "integer"
-        format: "int64"
       name:
         type: "string"
         example: "Martelo de Thor"
