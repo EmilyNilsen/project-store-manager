@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "Um backend simples e funcional para quem precisa de ajuda para começar seu negócio!."
+  description: "Uma solução simples e funcional para quem precisa de ajuda para começar a gerir seu negócio de maneira eficiente!"
   version: "1.0.0"
   title: "HopeAPI Docs"
   contact:
