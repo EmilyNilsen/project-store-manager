@@ -19,7 +19,7 @@ tags:
 
 paths:
   
-  /product:
+  /products:
     get:
       tags:
       - "Produtos"
@@ -80,7 +80,7 @@ paths:
         "404":
           description: "Caso o produto não exista retorna a mensagem: Product not found"
  
-  /product/{productId}:
+  /products/{productId}:
     get:
       tags:
       - "Produtos"
@@ -125,7 +125,7 @@ paths:
         "404":
           description: "Caso o produto não exista retorna a mensagem: Product not found"
 
-  /sale:
+  /sales:
     get:
       tags:
       - "Vendas"
@@ -184,7 +184,7 @@ paths:
         "200":
           description: "Retorna o produto atualizado"
   
-  /sale/{saleId}:
+  /sales/{saleId}:
     get:
       tags:
       - "Vendas"
