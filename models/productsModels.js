@@ -24,8 +24,8 @@ const createNewProduct = async ({ name, quantity }) => {
   return createdProduct;
 };
 
-const updateProduct = async ({ id, name, quantity }) => {
-await connection.execute(ProductQueries.update, [id, name, quantity]);
+const updateProduct = async ({ name, quantity, id }) => {
+await connection.execute(ProductQueries.update, [name, quantity, id]);
 
 const intId = parseInt(id, 10);
 const updatedProduct = {
