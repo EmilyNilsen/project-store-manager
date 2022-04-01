@@ -31,7 +31,9 @@ paths:
       
       responses:
         "200":
-          description: "Retorna todos os produtos disponiveis"
+          description: "Retorna uma lista contendo todos os produtos disponiveis. Modelo de objeto Produto abaixo:"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaDeProduto"
 
     post:
       tags:
