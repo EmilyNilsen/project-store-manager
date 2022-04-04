@@ -19,10 +19,13 @@ const createNewSale = `INSERT INTO ${DB}.sales_products
 const update = `UPDATE ${DB}.sales_products
 SET quantity=? WHERE product_id=? AND sale_id=?;`;
 
+const deleteAllSaleRecords = `DELETE FROM ${DB}.sales WHERE id=?;`;
+
 module.exports = {
   getAll,
   getById,
   createSaleRecordId,
   createNewSale,
   update,
+  deleteAllSaleRecords,
 };

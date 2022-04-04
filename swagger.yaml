@@ -170,27 +170,7 @@ paths:
         "201":
           description: "Retorna a venda que foi cadastrada"
           
-    put:
-      tags:
-      - "Vendas"
-      summary: "Atualiza uma venda existente"
-      description: ""
-      operationId: "updateSale"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Objeto da venda que será atualizada"
-        required: true
-        schema:
-          $ref: "#/definitions/ModeloDeAtualizacaoDeVenda"
-          
-      responses:
-        "200":
-          description: "Retorna o produto atualizado"
+    
   
   /sales/{saleId}:
     get:
@@ -209,13 +189,63 @@ paths:
         type: "integer"
         format: "int64"
       responses:
+
         "200":
           description: "Retorna a venda selecionada"
           schema:
             $ref: "#/definitions/ModeloDeRespostaDeVendaUnica"
         "404":
           description: "Caso a venda não exista retorna a mensagem: Sale not found"
-  
+    
+    put:
+        tags:
+        - "Vendas"
+        summary: "Atualiza uma venda existente pelo ID"
+        description: ""
+        operationId: "updateSale"
+        consumes:
+        - "application/json"
+        produces:
+        - "application/json"
+        parameters:
+        - name: "saleId"
+          in: "path"
+          description: "ID do produto desejado"
+          required: true
+          type: "integer"
+          format: "int64"
+        - in: "body"
+          name: "body"
+          description: "Objeto da venda que será atualizada"
+          required: true
+          schema:
+            $ref: "#/definitions/ModeloDeAtualizacaoDeVenda"
+            
+        responses:
+          "200":
+            description: "Retorna o produto atualizado"
+
+    delete:
+      tags:
+      - "Vendas"
+      summary: "Deletar uma venda"
+      description: ""
+      operationId: "deleteSale"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "saleId"
+        in: "path"
+        description: "ID da venda a ser deletada"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "204":
+          description: "Venda excluída com sucesso"
+        "404":
+          description: "Caso a venda não exista retorna a mensagem: Sale not found"
+
 definitions:
 
   ModeloDeCriacaoDeProduto:
@@ -294,9 +324,6 @@ definitions:
     - "productId"
     - "quantity"
     properties:
-      sale_id:
-        type: "integer"
-        format: "int64"
       productId:
         type: "integer"
         format: "int64"

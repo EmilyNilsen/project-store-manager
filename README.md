@@ -39,3 +39,6 @@ node index.js
 npm run test:mocha
 
 ```
+## Link para acessar a aplicação:
+
+https://hope-api-trybe.herokuapp.com/api-docs/#/

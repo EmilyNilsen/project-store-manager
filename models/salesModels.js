@@ -27,10 +27,15 @@ const update = async (saleId, productId, quantity) => {
   await connection.execute(salesQueries.update, [quantity, productId, saleId]);
 };
 
+const deleteSale = async (id) => {
+  await connection.execute(salesQueries.deleteAllSaleRecords, [id]);
+};
+
 module.exports = {
   getAllSales,
   getByIdSales,
   createNewSale,
   createSaleRecordId,
   update,
+  deleteSale,
 };

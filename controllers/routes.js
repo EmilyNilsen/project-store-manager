@@ -40,6 +40,8 @@ salesRouter.put('/:id',
   validations.validateQuantitySales,
   salesControllers.updateSale);
 
+salesRouter.delete('/:id', salesControllers.deleteSale);
+
 module.exports = {
   salesRouter,
   productsRouter,
