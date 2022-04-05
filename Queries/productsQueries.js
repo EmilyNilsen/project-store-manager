@@ -1,14 +1,14 @@
-const { DB } = require('../db.config');
+require('dotenv').config();
 
-const getAll = `SELECT * FROM ${DB}.products ORDER BY id ASC;`;
+const getAll = `SELECT * FROM ${process.env.DB}.products ORDER BY id ASC;`;
 
-const getById = `SELECT * FROM ${DB}.products WHERE id=?;`;
+const getById = `SELECT * FROM ${process.env.DB}.products WHERE id=?;`;
 
-const create = `INSERT INTO ${DB}.products (name, quantity) VALUES (?, ?);`;
+const create = `INSERT INTO ${process.env.DB}.products (name, quantity) VALUES (?, ?);`;
 
-const update = `UPDATE ${DB}.products SET name=?, quantity=? WHERE id=?;`;
+const update = `UPDATE ${process.env.DB}.products SET name=?, quantity=? WHERE id=?;`;
 
-const deleteProduct = `DELETE FROM ${DB}.products WHERE id=?;`;
+const deleteProduct = `DELETE FROM ${process.env.DB}.products WHERE id=?;`;
 
 module.exports = {
   getAll,
