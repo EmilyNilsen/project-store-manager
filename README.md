@@ -1,3 +1,4 @@
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=EmilyNilsen_project-store-manager)](https://sonarcloud.io/summary/new_code?id=EmilyNilsen_project-store-manager)
 
 #  Project Store Manager ✍
 ## Descrição
