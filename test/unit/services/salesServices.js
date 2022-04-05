@@ -46,7 +46,7 @@ describe('3 - Teste a camada Service do endpoint sales', () => {
       });
 
       it('Cada objeto no array deve ter as chaves saleId, date, productId e quantity', async () => {
-        const sales = await saleModel.getAllSales();
+        const sales = await salesModels.getAllSales();
       
         expect(sales).not.to.be.empty;
         sales.forEach(sale => expect(sale).to.include.all.keys('saleId', 'date', 'productId', 'quantity'));

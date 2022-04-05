@@ -1,8 +1,10 @@
 
-#  Project Store Manager ✍
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=EmilyNilsen_project-store-manager)](https://sonarcloud.io/summary/new_code?id=EmilyNilsen_project-store-manager)
+
+#  HopeAPI ✍
 ## Descrição
 
-Aqui vamos desenvolver uma API de um CRUD (Create, Read, Update e Delete) utilizando a arquitetura MSC. Foi desenvolvido um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar, atualizar produtos e vendas e mais de 40% de cobertura de testes unitários.
+Uma solução simples e funcional para quem precisa de ajuda para começar a gerir seu negócio de maneira eficiente. Neste projeto foi desenvolvida uma API de um CRUD (Create, Read, Update e Delete) utilizando a arquitetura MSC. Foi desenvolvido um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar, atualizar produtos e vendas.
 
 ##  Técnologias usadas
 
