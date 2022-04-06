@@ -1,4 +1,4 @@
-name: Build & QualityGate [Feature Branch Pull Request]
+name: Build&QualityGate
 
 on:
   pull_request:
