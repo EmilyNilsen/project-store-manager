@@ -1,5 +1,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=EmilyNilsen_project-store-manager&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=EmilyNilsen_project-store-manager)
-![build](https://github.com/EmilyNilsen/project-store-manager/actions/workflows/node.js.yml/badge.svg)
+![build](https://github.com/EmilyNilsen/project-store-manager/actions/workflows/buildAndQualityGate/badge.svg)
+![build](https://github.com/EmilyNilsen/project-store-manager/actions/workflows/deployToHeroku/badge.svg)
 
 #  HopeAPI ✍
 ## Descrição
