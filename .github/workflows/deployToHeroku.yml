@@ -1,4 +1,4 @@
-name: Build & Deploy [Main Branch]
+name: Build & Deploy to Heroku [Main Branch]
 
 on:
   push:
