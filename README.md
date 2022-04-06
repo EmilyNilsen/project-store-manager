@@ -1,4 +1,4 @@
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=EmilyNilsen_project-store-manager)](https://sonarcloud.io/summary/new_code?id=EmilyNilsen_project-store-manager)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=EmilyNilsen_project-store-manager&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=EmilyNilsen_project-store-manager)
 ![build](https://github.com/EmilyNilsen/project-store-manager/actions/workflows/node.js.yml/badge.svg)
 
 #  HopeAPI ✍
