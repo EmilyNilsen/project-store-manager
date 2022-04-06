@@ -12,7 +12,7 @@ app.use(cors());
 
 let swaggerDocument;
 
-if (process.env.DEV) {
+if (process.env.ENV === 'dev') {
   swaggerDocument = YAML.load('./swagger-dev.yaml');
 } else {
   swaggerDocument = YAML.load('./swagger-prod.yaml');
