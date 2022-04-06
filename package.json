@@ -4,11 +4,14 @@
   "description": "Simple CRUD to sales and products",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand",
-    "test:mocha": "nyc --reporter=lcov --all --include models --include services --include controllers mocha test/unit/**/*.js",
+    "test:mocha": "nyc --reporter=lcov mocha test/unit/**/*.js",
     "start": "node index.js",
     "debug": "nodemon index.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
+  },
+  "nyc": {
+    "include": ["Queries", "services", "controllers", "models"],
+    "exclude": ["test"] 
   },
   "repository": {
     "type": "git",
