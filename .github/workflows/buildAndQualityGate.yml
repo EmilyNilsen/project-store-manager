@@ -1,4 +1,4 @@
-name: Build&QualityGate
+name: Build & Quality Gate Analisys [PR to Main Branch]
 
 on:
   pull_request:
