@@ -23,22 +23,22 @@ const validateQuantity = (req, res, next) => {
 };
 
 const validateProductIdOfSaleItem = (req, res, next) => {
-  const havePId = req.body.some(({ productId }) => productId);
-  if (!havePId) {
+  const { productId } = req.body;
+  if (!productId) {
     return res.status(400).json({ message: '"productId" is required' });
   } next();
   };
 
   const validateQuantityOfSaleItem = (req, res, next) => {
-    const haveQuantity = req.body.some(({ quantity }) => quantity);
-    if (!haveQuantity) {
+    const { quantity } = req.body;
+    if (!quantity) {
       return res.status(400).json({ message: '"quantity" is required' });
     } next();
   };
   
   const validateQuantitySales = (req, res, next) => {
-    const higherThanZero = req.body.some(({ quantity }) => quantity > 0);
-    if (!higherThanZero) {
+    const { quantity } = req.body;
+    if (!quantity || quantity < 0) {
       return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
     } next();
   };
