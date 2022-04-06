@@ -18,9 +18,9 @@ const [dbResponse] = await connection.execute(salesQueries.createSaleRecordId);
 };
 
 const createNewSale = async (saleId, productId, quantity) => {
-  const batata = await connection
+  const newSale = await connection
     .execute(salesQueries.createNewSale, [saleId, productId, quantity]);
-  return batata;
+  return newSale;
 };
 
 const update = async (saleId, productId, quantity) => {

@@ -164,7 +164,7 @@ paths:
         description: "Objeto da venda realizada pela loja"
         required: true
         schema:
-          $ref: "#/definitions/ModeloDeRespostaDeVendaUnica"
+          $ref: "#/definitions/ModeloDeCriacaoDeVenda"
           
       responses:
         "201":
@@ -280,6 +280,16 @@ definitions:
       name:
         type: "string"
         example: "Martelo de Thor"
+      quantity:
+        type: "integer"
+        format: "int64"
+  
+  ModeloDeCriacaoDeVenda:
+      type: "object"
+    properties:
+      productId:
+        type: "integer"
+        format: "int64"
       quantity:
         type: "integer"
         format: "int64"
