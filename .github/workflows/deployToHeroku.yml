@@ -1,10 +1,10 @@
-name: Node.js CI
+name: Build & Deploy [Main Branch]
 
 on:
   push:
-    branches: [ main, feature/* ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, feature/* ]
+    branches: [ main ]
 
 jobs:
   build:
