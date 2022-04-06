@@ -285,7 +285,7 @@ definitions:
         format: "int64"
   
   ModeloDeCriacaoDeVenda:
-      type: "object"
+    type: "object"
     properties:
       productId:
         type: "integer"
