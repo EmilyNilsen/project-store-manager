@@ -43,7 +43,7 @@ const updateSale = async (id, sale) => {
 const deleteSale = async ({ id }) => {
   const sale = await getSaleById(id);
   if (!sale) return null;
-  return await Sales.deleteSale(id);
+  return Sales.deleteSale(id);
 };
 
 module.exports = {
