@@ -10,7 +10,13 @@ const app = express();
 app.use(bodyparser.json());
 app.use(cors());
 
-const swaggerDocument = YAML.load('./swagger.yaml');
+let swaggerDocument;
+
+if (process.env.DEV) {
+  swaggerDocument = YAML.load('./swagger-dev.yaml');
+} else {
+  swaggerDocument = YAML.load('./swagger-prod.yaml');
+}
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
