@@ -33,7 +33,7 @@ paths:
         "200":
           description: "Retorna uma lista contendo todos os produtos disponiveis. Modelo de objeto Produto abaixo:"
           schema:
-            $ref: "#/definitions/ModeloDeRespostaDeProduto"
+            $ref: "#/definitions/ModeloDeListagemDeProdutos"
 
     post:
       tags:
@@ -51,13 +51,17 @@ paths:
         description: "Objeto do produto que será adicionado na loja"
         required: true
         schema:
-          $ref: "#/definitions/ModeloDeCriacaoDeProduto"
+          $ref: "#/definitions/ModeloDeProduto"
           
       responses:
         "201":
           description: "Retorna o produto criado"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaDeProduto"
         "409":
           description: "Caso o produto já exista retorna a mensagem: Product already exists"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaProdutoJaExiste"
 
   /products/{productId}:
     get:
@@ -82,6 +86,8 @@ paths:
             $ref: "#/definitions/ModeloDeRespostaDeProduto"
         "404":
           description: "Caso o produto não exista retorna a mensagem: Product not found"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaProdutoNaoEncontrado"
           
     put:
       tags:
@@ -103,7 +109,7 @@ paths:
         description: "Objeto do produto que será atualizado"
         required: true
         schema:
-            $ref: "#/definitions/ModeloDeAtualizacaoDeProduto"
+            $ref: "#/definitions/ModeloDeProduto"
       responses:
         "200":
           description: "Retorna o produto atualizado"
@@ -111,6 +117,8 @@ paths:
             $ref: "#/definitions/ModeloDeRespostaDeProduto"
         "404":
           description: "Caso o produto não exista retorna a mensagem: Product not found"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaProdutoNaoEncontrado"
         
     delete:
       tags:
@@ -132,19 +140,21 @@ paths:
           description: "Produto excluído com sucesso"
         "404":
           description: "Caso o produto não exista retorna a mensagem: Product not found"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaProdutoNaoEncontrado"
 
   /sales:
     get:
       tags:
       - "Vendas"
-      summary: "Listar todos as vendas"
+      summary: "Listar todas as vendas"
       operationId: "getAllSales"
       produces:
       - "application/json"
       
       responses:
         "200":
-          description: "Retorna uma lista contendo todos as vendas disponiveis. Modelo de objeto Venda abaixo:"
+          description: "Retorna uma lista contendo todos as vendas disponiveis."
           schema:
             $ref: "#/definitions/ModeloDeRespostaDeListagemDeVendas"
           
@@ -164,13 +174,13 @@ paths:
         description: "Objeto da venda realizada pela loja"
         required: true
         schema:
-          $ref: "#/definitions/ModeloDeCriacaoDeVenda"
+          $ref: "#/definitions/ModeloDeVenda"
           
       responses:
         "201":
           description: "Retorna a venda que foi cadastrada"
-          
-    
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaDeVendaCriada"
   
   /sales/{saleId}:
     get:
@@ -196,6 +206,8 @@ paths:
             $ref: "#/definitions/ModeloDeRespostaDeVendaUnica"
         "404":
           description: "Caso a venda não exista retorna a mensagem: Sale not found"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaVendaNaoEncontrada"
     
     put:
         tags:
@@ -219,11 +231,13 @@ paths:
           description: "Objeto da venda que será atualizada"
           required: true
           schema:
-            $ref: "#/definitions/ModeloDeAtualizacaoDeVenda"
+            $ref: "#/definitions/ModeloDeVenda"
             
         responses:
           "200":
             description: "Retorna o produto atualizado"
+            schema:
+              $ref: "#/definitions/ModeloDeRespostaDeVendaAtualizada"
 
     delete:
       tags:
@@ -245,10 +259,12 @@ paths:
           description: "Venda excluída com sucesso"
         "404":
           description: "Caso a venda não exista retorna a mensagem: Sale not found"
+          schema:
+            $ref: "#/definitions/ModeloDeRespostaVendaNaoEncontrada"
 
 definitions:
 
-  ModeloDeCriacaoDeProduto:
+  ModeloDeProduto:
     type: "object"
     properties:
       name:
@@ -270,73 +286,122 @@ definitions:
       quantity:
         type: "integer"
         format: "int64"
+        
+  ModeloDeListagemDeProdutos:
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+          example: "Martelo de Thor"
+        quantity:
+          type: "integer"
+          format: "int64"
   
-  ModeloDeAtualizacaoDeProduto:
+  ModeloDeRespostaProdutoNaoEncontrado:
     type: "object"
-    required:
-    - "name"
-    - "quantity"
     properties:
-      name:
+      message:
         type: "string"
-        example: "Martelo de Thor"
-      quantity:
-        type: "integer"
-        format: "int64"
-  
-  ModeloDeCriacaoDeVenda:
+        example: "Product not found"
+        
+  ModeloDeRespostaProdutoJaExiste:
     type: "object"
     properties:
-      productId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int64"
+      message:
+        type: "string"
+        example: "Product already exists"
+  
+  ModeloDeVenda:
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        productId:
+          type: "integer"
+          format: "int64"
+        quantity:
+          type: "integer"
+          format: "int64"
+  
+  ModeloDeRespostaDeVendaCriada:
+    type: "array"
+    items:
+      properties:
+        id: 
+          type: "integer"
+          format: "int64"
+        itemsSold:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              productId:
+                type: "integer"
+                format: "int64"
+              quantity:
+                type: "integer"
+                format: "int64"
+  
+  ModeloDeRespostaDeVendaAtualizada:
+    type: "array"
+    items:
+      properties:
+        id: 
+          type: "integer"
+          format: "int64"
+        itemUpdated:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              productId:
+                type: "integer"
+                format: "int64"
+              quantity:
+                type: "integer"
+                format: "int64"
   
   ModeloDeRespostaDeVendaUnica:
-    type: "object"
-    properties:
-      date:
-        type: "string"
-        example: "2022-04-01T04:48:03.000Z"
-      productId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int64"
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        date:
+          type: "string"
+          example: "2022-04-01T04:48:03.000Z"
+        productId:
+          type: "integer"
+          format: "int64"
+        quantity:
+          type: "integer"
+          format: "int64"
       
   ModeloDeRespostaDeListagemDeVendas:
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        sale_id:
+          type: "integer"
+          format: "int64"
+        date:
+          type: "string"
+          example: "2022-04-01T04:48:03.000Z"
+        productId:
+          type: "integer"
+          format: "int64"
+        quantity:
+          type: "integer"
+          format: "int64"
+          
+  ModeloDeRespostaVendaNaoEncontrada:
     type: "object"
     properties:
-      
-      sale_id:
-        type: "integer"
-        format: "int64"
-      
-      date:
+      message:
         type: "string"
-        example: "2022-04-01T04:48:03.000Z"
-      
-      productId:
-        type: "integer"
-        format: "int64"
-      
-      quantity:
-        type: "integer"
-        format: "int64"
-  
-  ModeloDeAtualizacaoDeVenda:
-    type: "object"
-    required:
-    - "id"
-    - "productId"
-    - "quantity"
-    properties:
-      productId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int64"
+        example: "Sale not found"
