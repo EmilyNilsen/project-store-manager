@@ -5,6 +5,7 @@
 #  HopeAPI ✍
 ## Descrição
 
+
 Uma solução simples e funcional para quem precisa de ajuda para começar a gerir seu negócio de maneira eficiente. Neste projeto foi desenvolvida uma API de um CRUD (Create, Read, Update e Delete) utilizando a arquitetura MSC. Foi desenvolvido um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar, atualizar produtos e vendas.
 
 ## Board Kanban - atualizado em 27/04/2022
